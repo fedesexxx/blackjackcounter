@@ -14,8 +14,9 @@ banner = r"""
                        |__/                                                         
 
 """
-print("by fede jimenez v.1.16")
+print("by fede jimenez v.1.17")
 print("vivan las gueritas")
+print(Fore.MAGENTA + "NOVEDAD: ahora puedes introducir varias cartas a la vez ej. 223 (dos neutras y una alta)" + Style.RESET_ALL)
 
 conteo_valores = {
     '1': 1,  # Cartas bajas (2, 3, 4, 5, 6)
@@ -42,7 +43,7 @@ def pedir_porcentaje_mazos_jugados():
         try:
             porcentaje = float(input("¿Qué porcentaje de los mazos ya se ha jugado (0-100)? "))
             if 0 <= porcentaje <= 100:
-                return porcentaje / 100  
+                return porcentaje / 100
             else:
                 print("Porcentaje fuera de rango. Ingrese un valor entre 0 y 100.")
         except ValueError:
@@ -56,7 +57,7 @@ def calcular_true_count(running_count, cartas_restantes):
 
 def calcular_mazos_usados(cartas_sacadas, cartas_totales):
     mazos_usados = cartas_sacadas / 52
-    mazos_usados_redondeados = round(mazos_usados * 15) / 15
+    mazos_usados_redondeados = round(mazos_usados * 8) / 8
     return mazos_usados_redondeados
 
 def calcular_deck_penetration(cartas_sacadas, cartas_totales):
@@ -67,7 +68,7 @@ def contar_cartas_manual(mazo, cartas_sacadas):
     cartas_totales = len(mazo)
     
     print(f"\nHas seleccionado {len(mazo)//52} mazos, con un total de {cartas_totales} cartas.\n")
-    print("nota: ahora puedes agregar varias cartas a la vez en el mismo imput (ej: 223 [dos neutras y una alta])")
+    
     while True:
         tipo_carta = input("Ingresa el tipo de carta que salió (1: baja, 2: neutra, 3: alta) o 'r' para reiniciar, 'salir' para terminar: ").lower()
         
@@ -76,7 +77,7 @@ def contar_cartas_manual(mazo, cartas_sacadas):
         
         if tipo_carta == 'r':
             print("\nReiniciando el programa...\n")
-            juego_blackjack()  
+            juego_blackjack()
             return
         
         for carta in tipo_carta:
@@ -99,10 +100,10 @@ def contar_cartas_manual(mazo, cartas_sacadas):
             else:
                 print(f"Entrada no válida para la carta: {carta}. Por favor, ingresa '1', '2' o '3'.")
 
-def juego_blackjack():
+def vapedefresa():
     while True:
         print(Fore.GREEN + banner)
-        print(Fore.CYAN + "Bienvenido al contador de cartas de Blackjack\n" + Style.RESET_ALL)
+        print(Fore.CYAN + "Bienvenido al increible contador de cartas de Blackjack\n" + Style.RESET_ALL)
 
         numero_de_mazos = pedir_numero_de_mazos()
         
@@ -124,4 +125,4 @@ def juego_blackjack():
             break
 
 if __name__ == "__main__":
-    juego_blackjack()
+    vapedefresa()
