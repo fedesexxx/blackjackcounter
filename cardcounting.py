@@ -13,12 +13,13 @@ banner = r"""
                         _/ |                                                    
                        |__/                                                     
 """
+
 print(Fore.GREEN + banner)
-print("by fede jimenez v.1.18")
+print("by fede jimenez v.1.19")
 print("vivan las gueritas")
 
 conteo_valores = {
-    '1': 1,
+    '1': 1,  
     '2': 0,  
     '3': -1  
 }
@@ -42,7 +43,7 @@ def entrarenmedio():
         try:
             porcentaje = float(input("¿Qué porcentaje de los mazos ya se ha jugado (0-100)? "))
             if 0 <= porcentaje <= 100:
-                return porcentaje / 100  # Convertir a decimal
+                return porcentaje / 100  
             else:
                 print("Porcentaje fuera de rango. Ingrese un valor entre 0 y 100.")
         except ValueError:
@@ -66,7 +67,7 @@ def meGustasAlejandra(mazo, cartasSacadas):
     runningCount = 0
     cartasTotales = len(mazo)
 
-    print(Fore.MAGENTA + "Dedicado a A********)" + Style.RESET_ALL)
+    print(Fore.MAGENTA + "Dedicado a A********..." + Style.RESET_ALL)
     print(f"\nHas seleccionado {len(mazo)//52} mazos, con un total de {cartasTotales} cartas.\n")
 
     while True:
@@ -76,9 +77,10 @@ def meGustasAlejandra(mazo, cartasSacadas):
             break
         elif tipo_carta == 'r':
             print(Fore.RED + "Reiniciando el programa...\n")
-            juego_blackjack() 
+            vapedefresa() 
             return  
             
+        for carta in tipo_carta:
             if carta in conteo_valores:
                 runningCount += conteo_valores[carta]
                 cartasSacadas += 1
@@ -98,21 +100,25 @@ def meGustasAlejandra(mazo, cartasSacadas):
             else:
                 print("Entrada no válida. Por favor, ingresa '1', '2' o '3'.")
 
-def juego_blackjack():
-    print(Fore.GREEN + banner)  
+def vapedefresa():
     print(Fore.CYAN + "Bienvenido al increible, inigualable contador de cartas de Blackjack\n" + Style.RESET_ALL)
 
     numeroMazos = pedirMazos()
 
     mazo = crearMazo(numeroMazos)
 
-    entrarMitad = input("¿Estás entrando a mitad de un juego? (s/n): ").lower()
-    cartasSacadas = 0
-
-    if entrarMitad == 's':
-        porcentajeJugao = entrarenmedio()
-        cartasSacadas = int(len(mazo) * porcentajeJugao)
-        print(f"\nYa se han jugado {cartasSacadas} cartas.\n")
+    while True:
+        entrarMitad = input("¿Estás entrando a mitad de un juego? (s/n): ").lower()
+        if entrarMitad == 's':
+            porcentajeJugao = entrarenmedio()
+            cartasSacadas = int(len(mazo) * porcentajeJugao)
+            print(f"\nYa se han jugado {cartasSacadas} cartas.\n")
+            break
+        elif entrarMitad == 'n':
+            cartasSacadas = 0
+            break
+        else:
+            print("Entrada no válida. Por favor ingresa 's' (sí) o 'n' (no).")
 
     comenzar = input("¿Estás listo para comenzar el conteo? (s/n): ").lower()
     if comenzar == 's':
@@ -122,4 +128,5 @@ def juego_blackjack():
 
 # Ejecutar el programa
 if __name__ == "__main__":
-    juego_blackjack()
+    vapedefresa()
+
